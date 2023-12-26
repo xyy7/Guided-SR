@@ -8,17 +8,21 @@
 @Time    :   2023/2/1 20:08
 @Desc    :
 """
-import torch
+from collections import OrderedDict
 
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .local_arch import Local_Base
-from .common import ConvBNReLU2D
-from collections import OrderedDict
+
+try:
+    from .common import ConvBNReLU2D
+    from .local_arch import Local_Base
+except:
+    from common import ConvBNReLU2D
+    from local_arch import Local_Base
 
 
 class LayerNormFunction(torch.autograd.Function):
-
     @staticmethod
     def forward(ctx, x, weight, bias, eps):
         ctx.eps = eps
@@ -40,17 +44,20 @@ class LayerNormFunction(torch.autograd.Function):
         mean_g = g.mean(dim=1, keepdim=True)
 
         mean_gy = (g * y).mean(dim=1, keepdim=True)
-        gx = 1. / torch.sqrt(var + eps) * (g - y * mean_gy - mean_g)
-        return gx, (grad_output * y).sum(dim=3).sum(dim=2).sum(dim=0), grad_output.sum(dim=3).sum(dim=2).sum(
-            dim=0), None
+        gx = 1.0 / torch.sqrt(var + eps) * (g - y * mean_gy - mean_g)
+        return (
+            gx,
+            (grad_output * y).sum(dim=3).sum(dim=2).sum(dim=0),
+            grad_output.sum(dim=3).sum(dim=2).sum(dim=0),
+            None,
+        )
 
 
 class LayerNorm2d(nn.Module):
-
     def __init__(self, channels, eps=1e-6):
         super(LayerNorm2d, self).__init__()
-        self.register_parameter('weight', nn.Parameter(torch.ones(channels)))
-        self.register_parameter('bias', nn.Parameter(torch.zeros(channels)))
+        self.register_parameter("weight", nn.Parameter(torch.ones(channels)))
+        self.register_parameter("bias", nn.Parameter(torch.zeros(channels)))
         self.eps = eps
 
     def forward(self, x):
@@ -64,44 +71,61 @@ class SimpleGate(nn.Module):
 
 
 class NAFBlock(nn.Module):
-    def __init__(self, c, DW_Expand=2, FFN_Expand=2, drop_out_rate=0.):
+    def __init__(self, c, DW_Expand=2, FFN_Expand=2, drop_out_rate=0.0):
         super().__init__()
         dw_channel = c * DW_Expand
-        self.conv1 = nn.Conv2d(in_channels=c, out_channels=dw_channel, kernel_size=1, padding=0, stride=1, groups=1,
-                               bias=True)
-        self.conv2 = nn.Conv2d(in_channels=dw_channel, out_channels=dw_channel, kernel_size=3, padding=1, stride=1,
-                               groups=dw_channel,
-                               bias=True)
-        self.conv3 = nn.Conv2d(in_channels=dw_channel // 2, out_channels=c, kernel_size=1, padding=0, stride=1,
-                               groups=1, bias=True)
+        self.conv1 = nn.Conv2d(
+            in_channels=c, out_channels=dw_channel, kernel_size=1, padding=0, stride=1, groups=1, bias=True
+        )
+        self.conv2 = nn.Conv2d(
+            in_channels=dw_channel,
+            out_channels=dw_channel,
+            kernel_size=3,
+            padding=1,
+            stride=1,
+            groups=dw_channel,
+            bias=True,
+        )
+        self.conv3 = nn.Conv2d(
+            in_channels=dw_channel // 2, out_channels=c, kernel_size=1, padding=0, stride=1, groups=1, bias=True
+        )
 
         # Simplified Channel Attention
         self.sca = nn.Sequential(
             nn.AdaptiveAvgPool2d(1),
-            nn.Conv2d(in_channels=dw_channel // 2, out_channels=dw_channel // 2, kernel_size=1, padding=0, stride=1,
-                      groups=1, bias=True),
+            nn.Conv2d(
+                in_channels=dw_channel // 2,
+                out_channels=dw_channel // 2,
+                kernel_size=1,
+                padding=0,
+                stride=1,
+                groups=1,
+                bias=True,
+            ),
         )
 
         # SimpleGate
         self.sg = SimpleGate()
 
         ffn_channel = FFN_Expand * c
-        self.conv4 = nn.Conv2d(in_channels=c, out_channels=ffn_channel, kernel_size=1, padding=0, stride=1, groups=1,
-                               bias=True)
-        self.conv5 = nn.Conv2d(in_channels=ffn_channel // 2, out_channels=c, kernel_size=1, padding=0, stride=1,
-                               groups=1, bias=True)
+        self.conv4 = nn.Conv2d(
+            in_channels=c, out_channels=ffn_channel, kernel_size=1, padding=0, stride=1, groups=1, bias=True
+        )
+        self.conv5 = nn.Conv2d(
+            in_channels=ffn_channel // 2, out_channels=c, kernel_size=1, padding=0, stride=1, groups=1, bias=True
+        )
 
         self.norm1 = LayerNorm2d(c)
         self.norm2 = LayerNorm2d(c)
 
-        self.dropout1 = nn.Dropout(drop_out_rate) if drop_out_rate > 0. else nn.Identity()
-        self.dropout2 = nn.Dropout(drop_out_rate) if drop_out_rate > 0. else nn.Identity()
+        self.dropout1 = nn.Dropout(drop_out_rate) if drop_out_rate > 0.0 else nn.Identity()
+        self.dropout2 = nn.Dropout(drop_out_rate) if drop_out_rate > 0.0 else nn.Identity()
 
         self.beta = nn.Parameter(torch.zeros((1, c, 1, 1)), requires_grad=True)
         self.gamma = nn.Parameter(torch.zeros((1, c, 1, 1)), requires_grad=True)
 
-    def forward(self, inp):
-        x = inp
+    def forward(self, input):
+        x = input
 
         x = self.norm1(x)
 
@@ -113,7 +137,7 @@ class NAFBlock(nn.Module):
 
         x = self.dropout1(x)
 
-        y = inp + x * self.beta
+        y = input + x * self.beta
 
         x = self.conv4(self.norm2(y))
         x = self.sg(x)
@@ -125,14 +149,15 @@ class NAFBlock(nn.Module):
 
 
 class NAFNet(nn.Module):
-
-    def __init__(self, img_channel=3, width=16, middle_blk_num=1, enc_blk_nums=[], dec_blk_nums=[]):
+    def __init__(self, img_channel=3, layer_width=16, middle_blk_num=1, enc_blk_nums=[], dec_blk_nums=[]):
         super().__init__()
 
-        self.intro = nn.Conv2d(in_channels=img_channel, out_channels=width, kernel_size=3, padding=1, stride=1,
-                               groups=1, bias=True)
-        self.ending = nn.Conv2d(in_channels=width, out_channels=img_channel, kernel_size=3, padding=1, stride=1,
-                                groups=1, bias=True)
+        self.intro = nn.Conv2d(
+            in_channels=img_channel, out_channels=layer_width, kernel_size=3, padding=1, stride=1, groups=1, bias=True
+        )
+        self.ending = nn.Conv2d(
+            in_channels=layer_width, out_channels=img_channel, kernel_size=3, padding=1, stride=1, groups=1, bias=True
+        )
 
         self.encoders = nn.ModuleList()
         self.decoders = nn.ModuleList()
@@ -140,45 +165,26 @@ class NAFNet(nn.Module):
         self.ups = nn.ModuleList()
         self.downs = nn.ModuleList()
 
-        chan = width
+        chan = layer_width
         for num in enc_blk_nums:
-            self.encoders.append(
-                nn.Sequential(
-                    *[NAFBlock(chan) for _ in range(num)]
-                )
-            )
-            self.downs.append(
-                nn.Conv2d(chan, 2 * chan, 2, 2)
-            )
+            self.encoders.append(nn.Sequential(*[NAFBlock(chan) for _ in range(num)]))
+            self.downs.append(nn.Conv2d(chan, 2 * chan, 2, 2))
             chan = chan * 2
 
-        self.middle_blks = \
-            nn.Sequential(
-                *[NAFBlock(chan) for _ in range(middle_blk_num)]
-            )
+        self.middle_blks = nn.Sequential(*[NAFBlock(chan) for _ in range(middle_blk_num)])
 
         for num in dec_blk_nums:
-            self.ups.append(
-                nn.Sequential(
-                    nn.Conv2d(chan, chan * 2, 1, bias=False),
-                    nn.PixelShuffle(2)
-                )
-            )
+            self.ups.append(nn.Sequential(nn.Conv2d(chan, chan * 2, 1, bias=False), nn.PixelShuffle(2)))
             chan = chan // 2
-            self.decoders.append(
-                nn.Sequential(
-                    *[NAFBlock(chan) for _ in range(num)]
-                )
-            )
+            self.decoders.append(nn.Sequential(*[NAFBlock(chan) for _ in range(num)]))
 
-        self.padder_size = 2 ** len(self.encoders)
+        self.padder_size = 2 ** len(self.encoders)  # 2**4
 
-    def forward(self, inp):
+    def forward(self, input):
+        B, C, H, W = input.shape
+        input = self.check_image_size_for_padding(input)
 
-        B, C, H, W = inp.shape
-        inp = self.check_image_size(inp)
-
-        x = self.intro(inp)
+        x = self.intro(input)
 
         encs = []
 
@@ -195,12 +201,10 @@ class NAFNet(nn.Module):
             x = decoder(x)
 
         x = self.ending(x)
-        # x = x + inp
-        # print(x.size(), samples['lr_up'].size())
-        # print(x.shape)
+        # x = x + input
         return x[:, :, :H, :W]
 
-    def check_image_size(self, x):
+    def check_image_size_for_padding(self, x):
         _, _, h, w = x.size()
         mod_pad_h = (self.padder_size - h % self.padder_size) % self.padder_size
         mod_pad_w = (self.padder_size - w % self.padder_size) % self.padder_size
@@ -222,15 +226,6 @@ class NAFNetLocal(Local_Base, NAFNet):
             self.convert(base_size=base_size, train_size=train_size, fast_imp=fast_imp)
 
 
-
-# def get_bare_model(self, net):
-#     """Get bare model, especially under wrapping with
-#     DistributedDataParallel or DataParallel.
-#     """
-#     if isinstance(net, (DataParallel, DistributedDataParallel)):
-#             net = net.module
-#         return net
-
 def load_checkpoint(model, weights):
     checkpoint = torch.load(weights)
     try:
@@ -239,46 +234,46 @@ def load_checkpoint(model, weights):
         state_dict = checkpoint["state_dict"]
         new_state_dict = OrderedDict()
         for k, v in state_dict.items():
-            name = k[7:] if 'module.' in k else k
+            name = k[7:] if "module." in k else k
             new_state_dict[name] = v
         model.load_state_dict(new_state_dict)
 
 
-class PBVS(nn.Module):
+class Track1Head(nn.Module):
     def __init__(self, embed_dim):
-        super(PBVS, self).__init__()
+        super(Track1Head, self).__init__()
         self.head = nn.Sequential(
             ConvBNReLU2D(1, out_channels=embed_dim, kernel_size=7, padding=3),
             NAFBlock(c=embed_dim),
-            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act='PReLU', padding=1)
+            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act="PReLU", padding=1),
         )
 
     def forward(self, sample):
-        return self.head(sample['lr_up'])
+        return self.head(sample["lr_up"])
 
 
-class NIR(nn.Module):
+class Track2Head(nn.Module):
     def __init__(self, embed_dim):
-        super(NIR, self).__init__()
+        super(Track2Head, self).__init__()
         self.rgb = nn.Sequential(
             ConvBNReLU2D(3, out_channels=embed_dim, kernel_size=7, padding=3),
             NAFBlock(c=embed_dim),
-            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act='PReLU', padding=1),
+            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act="PReLU", padding=1),
         )
 
         self.nir = nn.Sequential(
             ConvBNReLU2D(1, out_channels=embed_dim, kernel_size=7, padding=3),
             NAFBlock(c=embed_dim),
-            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act='PReLU', padding=1),
+            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act="PReLU", padding=1),
         )
         self.fuse = nn.Sequential(
             ConvBNReLU2D(embed_dim * 2 + 4, out_channels=embed_dim, kernel_size=3, padding=1),
             NAFBlock(c=embed_dim),
-            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act='PReLU', padding=1),
+            ConvBNReLU2D(embed_dim, out_channels=embed_dim, kernel_size=3, act="PReLU", padding=1),
         )
 
     def forward(self, sample):
-        nir, rgb = sample['lr_up'], sample['img_rgb']
+        nir, rgb = sample["lr_up"], sample["img_rgb"]
         # print(nir.shape, rgb.shape)
         out = torch.cat((self.rgb(rgb), self.nir(nir), rgb, nir), dim=1)
         return self.fuse(out)
@@ -289,58 +284,70 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.args = args
 
-        self.head = NIR(args.embed_dim) if args.dataset == 'NIR' else PBVS(args.embed_dim)
+        self.head = Track2Head(args.embed_dim) if args.dataset == "NIR" else Track1Head(args.embed_dim)
         self.args = args
         enc_blks = [2, 2, 4, 8]
         middle_blk_num = 12
         dec_blks = [2, 2, 2, 2]
         train_size = (1, args.embed_dim, args.patch_size, args.patch_size)
         if args.test_only and args.tlc_enhance:
-            self.net = NAFNetLocal(img_channel=args.embed_dim, width=args.embed_dim, middle_blk_num=middle_blk_num,
-                                   enc_blk_nums=enc_blks, base_size=(640, 480),
-                                   dec_blk_nums=dec_blks, train_size=train_size)
+            self.net = NAFNetLocal(
+                img_channel=args.embed_dim,
+                layer_width=args.embed_dim,
+                middle_blk_num=middle_blk_num,
+                enc_blk_nums=enc_blks,
+                dec_blk_nums=dec_blks,
+                base_size=(640, 480),
+                train_size=train_size,
+            )
         else:
-            self.net = NAFNet(img_channel=args.embed_dim, width=args.embed_dim, middle_blk_num=middle_blk_num,
-                              enc_blk_nums=enc_blks,
-                              dec_blk_nums=dec_blks)
+            self.net = NAFNet(
+                img_channel=args.embed_dim,
+                layer_width=args.embed_dim,
+                middle_blk_num=middle_blk_num,
+                enc_blk_nums=enc_blks,
+                dec_blk_nums=dec_blks,
+            )
 
         self.tail = ConvBNReLU2D(in_channels=args.embed_dim, out_channels=1, kernel_size=3, padding=1)
-        # if args.pre_trained:
-        #     load_net = torch.load(args.model_path, map_location=lambda storage, loc: storage)
-        #     self.net.load_state_dict(load_net['params'] if 'params' in load_net.keys() else load_net, strict=True)
-        #     print('Successfully load pre-trained model ...')
 
     def forward(self, samples):
-
         out = self.tail(self.net(self.head(samples)))
-        out = out if self.args.no_res else out + samples['lr_up']
-        return {'img_out': out if self.args.test_only else out}
+        # out = out if self.args.no_res else out + samples["lr_up"] # 是否残差
+        return {"img_out": out if self.args.test_only else out}
 
 
-def make_model(args): return Net(args)
+def make_model(args):
+    return Net(args)
 
-# if __name__ == '__main__':
-#     img_channel = 3
-#     width = 32
-#
-#     # enc_blks = [2, 2, 4, 8]
-#     # middle_blk_num = 12
-#     # dec_blks = [2, 2, 2, 2]
-#
-#     enc_blks = [1, 1, 1, 28]
-#     middle_blk_num = 1
-#     dec_blks = [1, 1, 1, 1]
-#
-#     net = NAFNet(img_channel=img_channel, width=width, middle_blk_num=middle_blk_num,
-#                  enc_blk_nums=enc_blks, dec_blk_nums=dec_blks)
-#
-#     inp_shape = (3, 256, 256)
-#
-#     from ptflops import get_model_complexity_info
-#
-#     macs, params = get_model_complexity_info(net, inp_shape, verbose=False, print_per_layer_stat=False)
-#
-#     params = float(params[:-3])
-#     macs = float(macs[:-4])
-#
-#     print(macs, params)
+
+if __name__ == "__main__":
+    img_channel = 3
+    width = 32
+
+    # enc_blks = [2, 2, 4, 8]
+    # middle_blk_num = 12
+    # dec_blks = [2, 2, 2, 2]
+
+    enc_blks = [1, 1, 1, 28]  # NAF在每个阶段的数量
+    middle_blk_num = 1
+    dec_blks = [1, 1, 1, 1]
+
+    net = NAFNet(
+        img_channel=img_channel,
+        layer_width=width,
+        middle_blk_num=middle_blk_num,
+        enc_blk_nums=enc_blks,
+        dec_blk_nums=dec_blks,
+    )
+
+    input_shape = (3, 256, 256)
+
+    from ptflops import get_model_complexity_info
+
+    macs, params = get_model_complexity_info(net, input_shape, verbose=False, print_per_layer_stat=True)
+
+    params = float(params[:-3])
+    macs = float(macs[:-4])
+
+    print("mac, params: ", macs, params)

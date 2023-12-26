@@ -1,0 +1,717 @@
+NAFNet(
+  17.06 M, 99.706% Params, 16.1 GMac, 99.906% MACs, 
+  (intro): Conv2d(896, 0.005% Params, 58.72 MMac, 0.364% MACs, 3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (ending): Conv2d(867, 0.005% Params, 56.82 MMac, 0.353% MACs, 32, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (encoders): ModuleList(
+    13.2 M, 77.111% Params, 12.78 GMac, 79.333% MACs, 
+    (0): Sequential(
+      8.03 k, 0.047% Params, 459.28 MMac, 2.851% MACs, 
+      (0): NAFBlock(
+        8.03 k, 0.047% Params, 459.28 MMac, 2.851% MACs, 
+        (conv1): Conv2d(2.11 k, 0.012% Params, 138.41 MMac, 0.859% MACs, 32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(640, 0.004% Params, 41.94 MMac, 0.260% MACs, 64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+        (conv3): Conv2d(1.06 k, 0.006% Params, 69.21 MMac, 0.430% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          1.06 k, 0.006% Params, 2.1 MMac, 0.013% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 2.1 MMac, 0.013% MACs, output_size=1)
+          (1): Conv2d(1.06 k, 0.006% Params, 1.06 KMac, 0.000% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(2.11 k, 0.012% Params, 138.41 MMac, 0.859% MACs, 32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(1.06 k, 0.006% Params, 69.21 MMac, 0.430% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (1): Sequential(
+      30.4 k, 0.178% Params, 430.97 MMac, 2.675% MACs, 
+      (0): NAFBlock(
+        30.4 k, 0.178% Params, 430.97 MMac, 2.675% MACs, 
+        (conv1): Conv2d(8.32 k, 0.049% Params, 136.31 MMac, 0.846% MACs, 64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(1.28 k, 0.007% Params, 20.97 MMac, 0.130% MACs, 128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+        (conv3): Conv2d(4.16 k, 0.024% Params, 68.16 MMac, 0.423% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          4.16 k, 0.024% Params, 1.05 MMac, 0.007% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 1.05 MMac, 0.007% MACs, output_size=1)
+          (1): Conv2d(4.16 k, 0.024% Params, 4.16 KMac, 0.000% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(8.32 k, 0.049% Params, 136.31 MMac, 0.846% MACs, 64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(4.16 k, 0.024% Params, 68.16 MMac, 0.423% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (2): Sequential(
+      118.14 k, 0.690% Params, 416.83 MMac, 2.587% MACs, 
+      (0): NAFBlock(
+        118.14 k, 0.690% Params, 416.83 MMac, 2.587% MACs, 
+        (conv1): Conv2d(33.02 k, 0.193% Params, 135.27 MMac, 0.840% MACs, 128, 256, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(2.56 k, 0.015% Params, 10.49 MMac, 0.065% MACs, 256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+        (conv3): Conv2d(16.51 k, 0.096% Params, 67.63 MMac, 0.420% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          16.51 k, 0.096% Params, 540.8 KMac, 0.003% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 524.29 KMac, 0.003% MACs, output_size=1)
+          (1): Conv2d(16.51 k, 0.096% Params, 16.51 KMac, 0.000% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(33.02 k, 0.193% Params, 135.27 MMac, 0.840% MACs, 128, 256, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(16.51 k, 0.096% Params, 67.63 MMac, 0.420% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (3): Sequential(
+      13.04 M, 76.196% Params, 11.47 GMac, 71.220% MACs, 
+      (0): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (1): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (2): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (3): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (4): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (5): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (6): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (7): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (8): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (9): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (10): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (11): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (12): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (13): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (14): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (15): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (16): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (17): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (18): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (19): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (20): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (21): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (22): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (23): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (24): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (25): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (26): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+      (27): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+  )
+  (decoders): ModuleList(
+    622.24 k, 3.636% Params, 1.72 GMac, 10.656% MACs, 
+    (0): Sequential(
+      465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+      (0): NAFBlock(
+        465.66 k, 2.721% Params, 409.8 MMac, 2.544% MACs, 
+        (conv1): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(5.12 k, 0.030% Params, 5.24 MMac, 0.033% MACs, 512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+        (conv3): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          65.79 k, 0.384% Params, 327.94 KMac, 0.002% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 262.14 KMac, 0.002% MACs, output_size=1)
+          (1): Conv2d(65.79 k, 0.384% Params, 65.79 KMac, 0.000% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(131.58 k, 0.769% Params, 134.74 MMac, 0.836% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(65.79 k, 0.384% Params, 67.37 MMac, 0.418% MACs, 256, 256, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (1): Sequential(
+      118.14 k, 0.690% Params, 416.83 MMac, 2.587% MACs, 
+      (0): NAFBlock(
+        118.14 k, 0.690% Params, 416.83 MMac, 2.587% MACs, 
+        (conv1): Conv2d(33.02 k, 0.193% Params, 135.27 MMac, 0.840% MACs, 128, 256, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(2.56 k, 0.015% Params, 10.49 MMac, 0.065% MACs, 256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+        (conv3): Conv2d(16.51 k, 0.096% Params, 67.63 MMac, 0.420% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          16.51 k, 0.096% Params, 540.8 KMac, 0.003% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 524.29 KMac, 0.003% MACs, output_size=1)
+          (1): Conv2d(16.51 k, 0.096% Params, 16.51 KMac, 0.000% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(33.02 k, 0.193% Params, 135.27 MMac, 0.840% MACs, 128, 256, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(16.51 k, 0.096% Params, 67.63 MMac, 0.420% MACs, 128, 128, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (2): Sequential(
+      30.4 k, 0.178% Params, 430.97 MMac, 2.675% MACs, 
+      (0): NAFBlock(
+        30.4 k, 0.178% Params, 430.97 MMac, 2.675% MACs, 
+        (conv1): Conv2d(8.32 k, 0.049% Params, 136.31 MMac, 0.846% MACs, 64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(1.28 k, 0.007% Params, 20.97 MMac, 0.130% MACs, 128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+        (conv3): Conv2d(4.16 k, 0.024% Params, 68.16 MMac, 0.423% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          4.16 k, 0.024% Params, 1.05 MMac, 0.007% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 1.05 MMac, 0.007% MACs, output_size=1)
+          (1): Conv2d(4.16 k, 0.024% Params, 4.16 KMac, 0.000% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(8.32 k, 0.049% Params, 136.31 MMac, 0.846% MACs, 64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(4.16 k, 0.024% Params, 68.16 MMac, 0.423% MACs, 64, 64, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+    (3): Sequential(
+      8.03 k, 0.047% Params, 459.28 MMac, 2.851% MACs, 
+      (0): NAFBlock(
+        8.03 k, 0.047% Params, 459.28 MMac, 2.851% MACs, 
+        (conv1): Conv2d(2.11 k, 0.012% Params, 138.41 MMac, 0.859% MACs, 32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (conv2): Conv2d(640, 0.004% Params, 41.94 MMac, 0.260% MACs, 64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+        (conv3): Conv2d(1.06 k, 0.006% Params, 69.21 MMac, 0.430% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        (sca): Sequential(
+          1.06 k, 0.006% Params, 2.1 MMac, 0.013% MACs, 
+          (0): AdaptiveAvgPool2d(0, 0.000% Params, 2.1 MMac, 0.013% MACs, output_size=1)
+          (1): Conv2d(1.06 k, 0.006% Params, 1.06 KMac, 0.000% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (conv4): Conv2d(2.11 k, 0.012% Params, 138.41 MMac, 0.859% MACs, 32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (conv5): Conv2d(1.06 k, 0.006% Params, 69.21 MMac, 0.430% MACs, 32, 32, kernel_size=(1, 1), stride=(1, 1))
+        (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      )
+    )
+  )
+  (middle_blks): Sequential(
+    1.85 M, 10.804% Params, 406.45 MMac, 2.523% MACs, 
+    (0): NAFBlock(
+      1.85 M, 10.804% Params, 406.45 MMac, 2.523% MACs, 
+      (conv1): Conv2d(525.31 k, 3.070% Params, 134.48 MMac, 0.835% MACs, 512, 1024, kernel_size=(1, 1), stride=(1, 1))
+      (conv2): Conv2d(10.24 k, 0.060% Params, 2.62 MMac, 0.016% MACs, 1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=1024)
+      (conv3): Conv2d(262.66 k, 1.535% Params, 67.24 MMac, 0.417% MACs, 512, 512, kernel_size=(1, 1), stride=(1, 1))
+      (sca): Sequential(
+        262.66 k, 1.535% Params, 393.73 KMac, 0.002% MACs, 
+        (0): AdaptiveAvgPool2d(0, 0.000% Params, 131.07 KMac, 0.001% MACs, output_size=1)
+        (1): Conv2d(262.66 k, 1.535% Params, 262.66 KMac, 0.002% MACs, 512, 512, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (sg): SimpleGate(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      (conv4): Conv2d(525.31 k, 3.070% Params, 134.48 MMac, 0.835% MACs, 512, 1024, kernel_size=(1, 1), stride=(1, 1))
+      (conv5): Conv2d(262.66 k, 1.535% Params, 67.24 MMac, 0.417% MACs, 512, 512, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      (norm2): LayerNorm2d(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      (dropout1): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      (dropout2): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+    )
+  )
+  (ups): ModuleList(
+    696.32 k, 4.069% Params, 536.87 MMac, 3.332% MACs, 
+    (0): Sequential(
+      524.29 k, 3.064% Params, 134.22 MMac, 0.833% MACs, 
+      (0): Conv2d(524.29 k, 3.064% Params, 134.22 MMac, 0.833% MACs, 512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): PixelShuffle(0, 0.000% Params, 0.0 Mac, 0.000% MACs, upscale_factor=2)
+    )
+    (1): Sequential(
+      131.07 k, 0.766% Params, 134.22 MMac, 0.833% MACs, 
+      (0): Conv2d(131.07 k, 0.766% Params, 134.22 MMac, 0.833% MACs, 256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): PixelShuffle(0, 0.000% Params, 0.0 Mac, 0.000% MACs, upscale_factor=2)
+    )
+    (2): Sequential(
+      32.77 k, 0.191% Params, 134.22 MMac, 0.833% MACs, 
+      (0): Conv2d(32.77 k, 0.191% Params, 134.22 MMac, 0.833% MACs, 128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): PixelShuffle(0, 0.000% Params, 0.0 Mac, 0.000% MACs, upscale_factor=2)
+    )
+    (3): Sequential(
+      8.19 k, 0.048% Params, 134.22 MMac, 0.833% MACs, 
+      (0): Conv2d(8.19 k, 0.048% Params, 134.22 MMac, 0.833% MACs, 64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): PixelShuffle(0, 0.000% Params, 0.0 Mac, 0.000% MACs, upscale_factor=2)
+    )
+  )
+  (downs): ModuleList(
+    697.28 k, 4.075% Params, 538.84 MMac, 3.345% MACs, 
+    (0): Conv2d(8.26 k, 0.048% Params, 135.27 MMac, 0.840% MACs, 32, 64, kernel_size=(2, 2), stride=(2, 2))
+    (1): Conv2d(32.9 k, 0.192% Params, 134.74 MMac, 0.836% MACs, 64, 128, kernel_size=(2, 2), stride=(2, 2))
+    (2): Conv2d(131.33 k, 0.767% Params, 134.48 MMac, 0.835% MACs, 128, 256, kernel_size=(2, 2), stride=(2, 2))
+    (3): Conv2d(524.8 k, 3.067% Params, 134.35 MMac, 0.834% MACs, 256, 512, kernel_size=(2, 2), stride=(2, 2))
+  )
+)
+mac, params:  16.11 17.1

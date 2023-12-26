@@ -1,0 +1,64 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "name": "nodemon",
+            "program": "${workspaceFolder}/app.js",
+            "request": "launch",
+            "restart": true,
+            "runtimeExecutable": "nodemon",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: train",
+            "cwd": "/home/xyy/Guided-SR",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "-c",
+                "./config/nir.yml",
+                "--scale",
+                "4",
+                "--model_name",
+                "Base2",
+                "--show_every",
+                "10",
+                "--epochs",
+                "120",
+                "--opt",
+                "Adam",
+                "--decay_epochs",
+                "70_90",
+                "--lr",
+                "3e-4",
+                "--embed_dim",
+                "64",
+                "--sched",
+                "multistep",
+                "--debug",
+                "--save_result"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "6",
+            }
+        },
+    ]
+}

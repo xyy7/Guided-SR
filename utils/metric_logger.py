@@ -15,12 +15,14 @@ from collections import defaultdict, deque, OrderedDict
 
 import torch.distributed as dist
 
+
 def is_dist_avail_and_initialized():
     if not dist.is_available():
         return False
     if not dist.is_initialized():
         return False
     return True
+
 
 def reduce_across_processes(val):
     if not is_dist_avail_and_initialized():
@@ -31,6 +33,7 @@ def reduce_across_processes(val):
     dist.barrier()
     dist.all_reduce(t)
     return t
+
 
 class SmoothedValue:
     """Track a series of values and provide access to smoothed values over a
@@ -176,4 +179,3 @@ class MetricLogger:
         # total_time_str = str(datetime.timedelta(seconds=int(total_time)))
 
         # print(f"{header} Total time: {total_time_str}")
-

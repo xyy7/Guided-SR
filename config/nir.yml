@@ -8,3 +8,4 @@ seed: 0
 decay_epochs: '60_80'
 epochs: 160
 model_name: Base2
+embed_dim: 64

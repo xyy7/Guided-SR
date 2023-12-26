@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=7 python  main.py -c ./config/nir.yml --scale 8 --model_name Base2 --show_every 10 --epochs 90  --opt Adam --decay_epochs '40_70' --lr 3e-4 --embed_dim 64 --sched multistep --seed 60   --loss 1*MSE --test_only --load_name ?
