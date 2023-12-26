@@ -68,7 +68,10 @@ def evaluate(model, criterion, test_name, val_data, device, args):
 
         if args.save_result:
             for index in range(samples["img_gt"].size(0)):
-                save_name = os.path.join(sv_path, samples["img_name"][0])  # batch size=1
+                if test_name == "test":
+                    save_name = os.path.join(sv_path, "ev1_" + samples["img_name"][0])  # batch size=1
+                else:
+                    save_name = os.path.join(sv_path, samples["img_name"][0])  # batch size=1
                 img = utils.tensor2uint(out["img_out"][index : index + 1], data_range=args.data_range)
                 if args.dataset == "NIR":
                     cv2.imwrite(save_name, img)

@@ -87,7 +87,7 @@ def main():
                 with open("./logs/{}/{}/log.txt".format(args.dataset, args.exp_name), "a") as f:
                     f.write(json.dumps(log_stats) + "\n")
 
-            if args.debug or epoch % 10 == 0:
+            if args.debug or (epoch + 1) % 10 == 0:
                 utils.save_on_master(
                     {
                         "optimizer": optimizer.state_dict(),
@@ -96,7 +96,7 @@ def main():
                         "epoch": epoch,
                         "args": args,
                     },
-                    "{}/model_{}.pth".format(ckpt_path, str(epoch).zfill(6)),
+                    "{}/model_{}.pth".format(ckpt_path, str(epoch+1).zfill(6)),
                 )
                 if args.debug:
                     exit()

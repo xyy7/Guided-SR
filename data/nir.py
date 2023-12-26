@@ -36,7 +36,7 @@ class NIR(Dataset):
 
         gt_paths = os.listdir(gt_root)
         rgb_paths = os.listdir(rgb_root)
-        self.gt_imgs = [Image.open(os.path.join(gt_root, img)) for img in gt_paths]
+        self.gt_imgs = [Image.open(os.path.join(gt_root, img)).convert("L") for img in gt_paths]
         self.rgb_imgs = [Image.open(os.path.join(rgb_root, img)) for img in rgb_paths]
         self.img_names = gt_paths
 
@@ -53,7 +53,13 @@ class NIR(Dataset):
             gt_img, rgb_img = augment.get_patch(gt_img, rgb_img, patch_size=self.args.patch_size)
             gt_img, rgb_img = augment.random_rot(gt_img, rgb_img, hflip=True, rot=True)
 
-        if self.attr != "test":
+        if self.args.debug:
+            print("befor imresize, rgb_img.shape", rgb_img.shape)
+            print("befor imresize, gt_img.shape(lr in test)", gt_img.shape)
+
+        if self.attr == "test":
+            lr_img = cv2.resize(gt_img.squeeze(), fx=1, fy=1, dsize=None)
+        else:
             lr_img = cv2.resize(gt_img.squeeze(), fx=1 / self.args.scale, fy=1 / self.args.scale, dsize=None)
         lr_img = imresize(lr_img.astype(float), scalar_scale=self.args.scale) / 255
         lr_img = np.expand_dims(lr_img, 0)

@@ -66,6 +66,7 @@ parser.add_argument("--local_rank", type=int, default=0)
 parser.add_argument("--repeated_aug", action="store_true")
 
 parser.add_argument("--save_result", action="store_true")
+parser.add_argument("--tlc_enhance", action="store_true")
 parser.add_argument("--print_freq", type=int, default=100)
 parser.add_argument("--show_every", type=int)  # data times, 扩大epoch
 parser.add_argument("--data_range", type=int, default=1)
