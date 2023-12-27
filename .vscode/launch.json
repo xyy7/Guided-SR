@@ -31,7 +31,7 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "justMyCode": false,
+            "justMyCode": true,
             "args": [
                 "-c",
                 "./config/nir.yml",

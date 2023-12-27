@@ -58,10 +58,10 @@ class NIR(Dataset):
             print("befor imresize, gt_img.shape(lr in test)", gt_img.shape)
 
         if self.attr == "test":
-            lr_img = cv2.resize(gt_img.squeeze(), fx=1, fy=1, dsize=None)
+            lrx8_img = cv2.resize(gt_img.squeeze(), fx=1, fy=1, dsize=None)
         else:
-            lr_img = cv2.resize(gt_img.squeeze(), fx=1 / self.args.scale, fy=1 / self.args.scale, dsize=None)
-        lr_img = imresize(lr_img.astype(float), scalar_scale=self.args.scale) / 255
+            lrx8_img = cv2.resize(gt_img.squeeze(), fx=1 / self.args.scale, fy=1 / self.args.scale, dsize=None)
+        lr_img = imresize(lrx8_img.astype(float), scalar_scale=self.args.scale) / 255
         lr_img = np.expand_dims(lr_img, 0)
 
         gt_img, rgb_img = gt_img / 255, rgb_img / 255
@@ -69,4 +69,10 @@ class NIR(Dataset):
         if self.args.debug:
             print(self.img_names[item], "data_shape", gt_img.shape, rgb_img.shape, lr_img.shape)
 
-        return {"img_gt": gt_img, "img_rgb": rgb_img, "lr_up": lr_img, "img_name": self.img_names[item]}
+        return {
+            "img_gt": gt_img,
+            "img_rgb": rgb_img,
+            "lr_up": lr_img,
+            "img_name": self.img_names[item],
+            "img_lr": lrx8_img,
+        }
