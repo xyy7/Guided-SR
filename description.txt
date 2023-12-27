@@ -1,1 +1,3 @@
 base4: add rgb information (downsample+head1+catNAF) at encoder.
+base5: add rgb information (head1-stride2+resNAF) at encoder.
+

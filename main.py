@@ -11,6 +11,7 @@
 
 import json
 import os
+import time
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -84,7 +85,7 @@ def main():
 
             if args.local_rank == 0:
                 [writer.add_scalar(k.replace("_", "/"), v, epoch) for k, v in log_stats.items() if k != "EPOCH"]
-                with open("./logs/{}/{}/log.txt".format(args.dataset, args.exp_name), "a") as f:
+                with open("./logs/{}/{}/{}_log.txt".format(args.dataset, args.exp_name, time.time()), "a") as f:
                     f.write(json.dumps(log_stats) + "\n")
 
             if args.debug or (epoch + 1) % 10 == 0:
@@ -96,7 +97,7 @@ def main():
                         "epoch": epoch,
                         "args": args,
                     },
-                    "{}/model_{}.pth".format(ckpt_path, str(epoch+1).zfill(6)),
+                    "{}/model_{}.pth".format(ckpt_path, str(epoch + 1).zfill(6)),
                 )
                 if args.debug:
                     exit()
